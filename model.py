@@ -89,6 +89,12 @@ class TimeRNN:
         return hs
     
     def backward(self, dhs):
+        """
+        Args:
+            dhs : t-time-series output's gradient
+        Return:
+            dxs : pool of gradient
+        """
         Wx, Wh, b = self.params
         N, T, H = dhs.shape
         D, H = Wx.shape
@@ -99,9 +105,9 @@ class TimeRNN:
         
         for t in reversed(range(T)):
             layer = self.layers[t]
-            dx, dh = layer.backward(dhs[:, t, :] + dh)
+            dx, dh = layer.backward(dhs[:, t, :] + dh) # added gradient
             dxs[:, t, :] = dx
-
+            # summation of each layer's gradient
             for i, grad in enumerate(layer.grads):
                 grads[i] += grad
         for i, grad in enumerate(grads):
