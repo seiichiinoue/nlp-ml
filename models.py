@@ -56,6 +56,7 @@ class SimpleRnnlm:
     def reset_state(self):
         self.rnn_layer.reset_state()
 
+
 class Rnnlm:
     def __init__(self, vocab_size=10000, wordvec_size=100, hidden_size=100):
         V, D, H = vocab_size, wordvec_size, hidden_size

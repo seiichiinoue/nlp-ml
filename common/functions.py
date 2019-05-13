@@ -3,10 +3,8 @@ import numpy as np
 def sigmoid(x):
     return 1 / (1 + np.exp(-x))
 
-
 def relu(x):
     return np.maximum(0, x)
-
 
 def softmax(x):
     if x.ndim == 2:
@@ -18,7 +16,6 @@ def softmax(x):
         x = np.exp(x) / np.sum(np.exp(x))
 
     return x
-
 
 def cross_entropy_error(y, t):
     if y.ndim == 1:
@@ -33,6 +30,7 @@ def cross_entropy_error(y, t):
 
     return -np.sum(np.log(y[np.arange(batch_size), t] + 1e-7)) / batch_size
 
+# function to avoid exploading gradient
 def clip_grads(grads, max_norm):
     total_norm = 0
     for grad in grads:
