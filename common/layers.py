@@ -1,3 +1,4 @@
+import numpy as np
 from common.functions import softmax, cross_entropy_error
 
 
@@ -162,3 +163,4 @@ class Embedding:
         dW[...] = 0
         np.add.at(dW, self.idx, dout)
         return None
+

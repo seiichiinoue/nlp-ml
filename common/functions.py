@@ -32,3 +32,15 @@ def cross_entropy_error(y, t):
     batch_size = y.shape[0]
 
     return -np.sum(np.log(y[np.arange(batch_size), t] + 1e-7)) / batch_size
+
+def clip_grads(grads, max_norm):
+    total_norm = 0
+    for grad in grads:
+        total_norm += np.sum(grad ** 2)
+    total_norm = np.sqrt(total_norm)
+    rate = max_norm / (total_norm + 1e-6)
+    if rate < 1:
+        for grad in grads:
+            grad *= rate
+
+
