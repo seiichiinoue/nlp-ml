@@ -248,6 +248,7 @@ class TimeDropout:
     def backward(self, dout):
         return dout * self.mask
 
+
 class LSTM:
     def __init__(self, Wx, Wh, b):
         self.params = [Wx, Wh, b]
@@ -308,6 +309,7 @@ class LSTM:
         dh_prev = np.dot(dA, Wh.T)
 
         return dx, dh_prev, dc_prev
+
 
 class TimeLSTM:
     def __init__(self, Wx, Wh, b, stateful=False):
