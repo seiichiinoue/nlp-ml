@@ -1,6 +1,7 @@
 import numpy as np
 from common.layers import *
 from common.functions import *
+from common.base_model import BaseModel
 
 class RNN:
     def __init__(self, Wx, Wh, b):
@@ -369,5 +370,3 @@ class TimeLSTM:
 
     def reset_state(self):
         self.h, self.c = None, None
-
-
